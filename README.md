@@ -11,8 +11,8 @@ When a diffusion model memorizes its finite training set, the learned prior coll
 ## Installation
 
 ```bash
-conda create --name sips "python<=3.12"
-conda activate sips
+conda create --name mempost "python<=3.12"
+conda activate mempost
 
 git clone https://github.com/alisiahkoohi/mempost
 cd mempost
@@ -49,17 +49,17 @@ mempost/
 
 | Figure | Description | Script |
 |---|---|---|
-| Figure 1 (a--c) | 1D posterior collapse at $\sigma \in \{0.5, 0.3, 0.05\}$ | `stylized_gmm.py` |
+| Figure 1 (a--c) | 1D posterior collapse at sigma = {0.5, 0.3, 0.05} | `stylized_gmm.py` |
 | Figure 1 (d--f) | 2D posterior with linearized Gaussian mixture components | `stylized_gmm.py` |
-| Figure 2 | Most memorized $N\!=\!50$ prior/posterior samples and nearest training neighbors | `helmholtz_dps_comparison_c64.py` |
-| Figure 3 | DPS posterior analysis: true model, loss curves, calibration, mean, std, scatter ($N\!=\!50, 200, 1000$) | `helmholtz_dps_comparison_c64.py` |
-| Table 1 | Memorization rates across $N$ | `helmholtz_dps_comparison_c64.py` |
+| Figure 2 | Most memorized N=50 prior/posterior samples and nearest training neighbors | `helmholtz_dps_comparison_c64.py` |
+| Figure 3 | DPS posterior analysis: true model, loss, calibration, mean, std, scatter (N=50, 200, 1000) | `helmholtz_dps_comparison_c64.py` |
+| Table 1 | Memorization rates across N | `helmholtz_dps_comparison_c64.py` |
 
 ## Reproducing paper figures
 
 All commands assume:
 ```bash
-conda activate sips
+conda activate mempost
 cd ~/Codes/mempost
 ```
 
@@ -77,9 +77,9 @@ Output: `figs/stylized_panels/1d_sigma*.png` and `figs/stylized_panels/2d_sigma*
 
 ### Figures 2--3 and Table 1: Helmholtz DPS comparison
 
-This experiment requires trained score models (one per $N \in \{50, 200, 1000\}$) and a GPU.
+This experiment requires trained score models (one per N in {50, 200, 1000}) and a GPU.
 
-#### Step 1: Train score models (one per $N$)
+#### Step 1: Train score models (one per N)
 
 Configs: `configs/helmholtz_fwi_N{50,200,1000}_overfit.json`.
 
