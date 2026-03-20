@@ -669,7 +669,7 @@ def run_individual_panels(args: argparse.Namespace) -> None:
         lik_density.max().item(),
     ) * 1.1
 
-    PANEL_FIGSIZE = (4.5, 2.8)
+    PANEL_FIGSIZE = (4.5, 2.4)
     LABEL_FS = 9
     LEGEND_FS = 7.5
     TICK_FS = 8
@@ -703,13 +703,17 @@ def run_individual_panels(args: argparse.Namespace) -> None:
         ax.set_xlabel("$x$", fontsize=LABEL_FS)
         ax.set_ylabel("Density", fontsize=LABEL_FS)
         ax.set_xlim(-2, 3)
-        ax.set_ylim(0, y_max_1d)
-        ax.legend(fontsize=LEGEND_FS, loc="upper right")
+        if sigma >= 0.3:
+            ax.set_ylim(0, 2)
+        else:
+            ax.set_ylim(0, y_max_1d)
+        ax.legend(fontsize=LEGEND_FS, loc="upper right", ncol=2)
         ax.tick_params(labelsize=TICK_FS)
 
         fname = f"1d_sigma{sigma}.png"
-        fig.tight_layout()
-        fig.savefig(os.path.join(panel_dir, fname), dpi=300)
+        fig.tight_layout(pad=0.3)
+        fig.savefig(os.path.join(panel_dir, fname), dpi=300,
+                    bbox_inches="tight", pad_inches=0.02)
         plt.close(fig)
         print(f"  Saved: {fname}")
 
@@ -800,14 +804,14 @@ def run_individual_panels(args: argparse.Namespace) -> None:
 
         # 3. Linearized posterior contours (gray, solid, more visible)
         lin_levels = np.linspace(lin_post_np.max() * 0.03,
-                                  lin_post_np.max(), 15)
+                                  lin_post_np.max(), 8)
         ax.contour(X.numpy(), Y.numpy(), lin_post_np,
                    levels=lin_levels, colors="gray", linewidths=1.0,
                    alpha=0.8, zorder=3)
 
         # 4. True posterior (red shaded only, no contour lines)
         post_levels = np.linspace(post_np.max() * 0.05,
-                                   post_np.max(), 15)
+                                   post_np.max(), 8)
         ax.contourf(X.numpy(), Y.numpy(), post_np,
                     levels=post_levels, cmap="Reds", alpha=0.6, zorder=4)
 
@@ -830,7 +834,7 @@ def run_individual_panels(args: argparse.Namespace) -> None:
                            markersize=7, markeredgecolor="black",
                            linestyle="None", label="Training"),
             ],
-            fontsize=LEGEND_FS, loc="upper right", framealpha=0.92,
+            fontsize=LEGEND_FS, loc="upper right", framealpha=0.92, ncol=2,
         )
 
         ax.set_xlim(x_lo, x_hi)
@@ -853,7 +857,7 @@ def run_individual_panels(args: argparse.Namespace) -> None:
                           levels=lin_levels, colors="gray", linewidths=1.4,
                           alpha=0.9)
             axins.contourf(X.numpy(), Y.numpy(), post_np,
-                           levels=post_levels, cmap="Reds", alpha=0.6)
+                           levels=5, cmap="Reds", alpha=0.6)
             axins.set_xlim(cx - zoom_w, cx + zoom_w)
             axins.set_ylim(cy - zoom_w, cy + zoom_w)
             axins.set_xticks([])
@@ -863,8 +867,9 @@ def run_individual_panels(args: argparse.Namespace) -> None:
             ax.indicate_inset_zoom(axins, edgecolor="black", linewidth=1.0)
 
         fname = f"2d_sigma{sigma}.png"
-        fig.tight_layout()
-        fig.savefig(os.path.join(panel_dir, fname), dpi=300)
+        fig.tight_layout(pad=0.3)
+        fig.savefig(os.path.join(panel_dir, fname), dpi=300,
+                    bbox_inches="tight", pad_inches=0.02)
         plt.close(fig)
         print(f"  Saved: {fname}")
 

@@ -97,7 +97,13 @@ Config: `configs/helmholtz_dps_comparison_c64.json`.
 python scripts/helmholtz_dps_comparison_c64.py --gpu_id 0 --seed 123
 ```
 
-Output: `figs/helmholtz_panels/` with all panels for Figures 2--3.
+#### Step 3: Generate paper-quality panels
+
+```bash
+python scripts/generate_paper_panels.py
+```
+
+Output: `figs/helmholtz_panels/` with all panels for Figures 2--5 (true model, loss, mean, std, scatter, calibration, memorized pairs).
 
 ---
 
