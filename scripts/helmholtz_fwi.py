@@ -85,7 +85,7 @@ class ScoreModel(nn.Module):
 
 
 CONFIG_FILE = "helmholtz_fwi.json"
-FIGS_DIR = os.path.expanduser("~/Documents/IMAGE26-brainstorming/figs")
+FIGS_DIR = os.path.join("figs", "helmholtz")
 
 
 def make_gaussian_lens(grid_size=64, v_background=2.0,

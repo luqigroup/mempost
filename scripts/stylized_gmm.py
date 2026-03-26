@@ -34,7 +34,7 @@ from mempost import (
 CONFIG_FILE = "stylized_gmm.json"
 
 # Paper figure output directory
-FIGS_DIR = os.path.expanduser("~/Documents/IMAGE26-brainstorming/figs")
+FIGS_DIR = os.path.join("figs", "stylized_panels")
 
 
 # ---------- Forward operators ----------

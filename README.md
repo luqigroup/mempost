@@ -60,7 +60,7 @@ mempost/
 All commands assume:
 ```bash
 conda activate mempost
-cd ~/Codes/mempost
+cd mempost
 ```
 
 ### Figure 1: Stylized GMM posterior collapse (no GPU)
@@ -103,7 +103,7 @@ python scripts/helmholtz_dps_comparison_c64.py --gpu_id 0 --seed 123
 python scripts/generate_paper_panels.py
 ```
 
-Output: `figs/helmholtz_panels/` with all panels for Figures 2--5 (true model, loss, mean, std, scatter, calibration, memorized pairs).
+Output: `figs/helmholtz_panels/` with all panels for Figures 2--3, Table 1 (true model, loss, mean, std, scatter, calibration, memorized pairs).
 
 ---
 
@@ -112,6 +112,10 @@ Output: `figs/helmholtz_panels/` with all panels for Figures 2--5 (true model, l
 ```bash
 pytest tests/ -v
 ```
+
+## Acknowledgments
+
+Parts of this codebase were developed with the assistance of [Claude](https://claude.ai/) (Anthropic).
 
 ## Author
 

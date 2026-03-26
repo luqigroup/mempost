@@ -2,7 +2,7 @@
 
 Usage:
     conda activate mempost
-    cd ~/Codes/mempost
+    cd mempost
     python scripts/generate_paper_panels.py
 """
 import os
@@ -19,17 +19,11 @@ from mempost.utils.memorization_metrics import nearest_neighbor_distances, ratio
 
 # --------------- config ---------------
 RESULTS_PATHS = {
-    0.07: os.path.expanduser(
-        "~/Codes/mempost/data/backup_avg3_256/checkpoints_step-0.07/results.pth"
-    ),
-    0.1: os.path.expanduser(
-        "~/Codes/mempost/data/backup_avg3_256/checkpoints_step-0.1/results.pth"
-    ),
+    0.07: os.path.join("data", "backup_avg3_256", "checkpoints_step-0.07", "results.pth"),
+    0.1: os.path.join("data", "backup_avg3_256", "checkpoints_step-0.1", "results.pth"),
 }
 RESULTS_PATH = RESULTS_PATHS[0.07]  # default for non-calibration panels
-OUT_DIR = os.path.expanduser(
-    "~/Documents/paper-IMAGE2026otlo/figs/helmholtz_panels"
-)
+OUT_DIR = os.path.join("figs", "helmholtz_panels")
 os.makedirs(OUT_DIR, exist_ok=True)
 
 N_VALUES = [50, 200, 1000]
