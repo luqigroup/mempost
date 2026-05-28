@@ -74,3 +74,4 @@ plots/*
 *.npy
 *.npz
 *.pt
+figs/
