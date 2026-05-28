@@ -19,11 +19,16 @@ from mempost.utils.memorization_metrics import nearest_neighbor_distances, ratio
 
 # --------------- config ---------------
 RESULTS_PATHS = {
-    0.07: os.path.join("data", "backup_avg3_256", "checkpoints_step-0.07", "results.pth"),
-    0.1: os.path.join("data", "backup_avg3_256", "checkpoints_step-0.1", "results.pth"),
+    # 0.07: os.path.join("data", "backup_avg3_256", "checkpoints_step-0.07", "results.pth"),
+    # 0.1: os.path.join("data", "backup_avg3_256", "checkpoints_step-0.1", "results.pth"),
+    0.1: os.path.join("data", "checkpoints", "helmholtz_dps_comparison_sips_c64_n_src-15_n_rec-196_noise_rel-0.055_num_samples-256_step_size-0.07_n_lik_steps-1_seed-123_precision-complex64_true_model-file","results_lambda_1.5.pth"),
+
 }
-RESULTS_PATH = RESULTS_PATHS[0.07]  # default for non-calibration panels
-OUT_DIR = os.path.join("figs", "helmholtz_panels")
+# 0.1: os.path.join("data", "checkpoints", "helmholtz_dps_comparison_c64_n_src-15_n_rec-196_noise_rel-0.055_num_samples-256_step_size-0.07_n_lik_steps-1_seed-123_precision-complex64_true_model-file","results.pth"),
+# 
+# /lustre/fs1/home/da389032/mempost/data/checkpoints/helmholtz_dps_comparison_c64_n_src-15_n_rec-196_noise_rel-0.055_num_samples-256_step_size-0.07_n_lik_steps-1_seed-123_precision-complex64_true_model-file/
+RESULTS_PATH = RESULTS_PATHS[0.1]  # default for non-calibration panels
+OUT_DIR = os.path.join("figs", "helmholtz_panels_sigma_1.5")
 os.makedirs(OUT_DIR, exist_ok=True)
 
 N_VALUES = [50, 200, 1000]
@@ -44,7 +49,8 @@ KL_KWARGS = dict(K=10, grid_size=200, v_background=2.0, sigma_m=0.02)
 COL_TRAIN = "#1f77b4"
 COL_POST = "#d62728"
 COL_TRUE = "black"
-COLORS_BAR = {50: "#d62728", 200: "#ff7f0e", 1000: "#2ca02c"}
+COLORS_BAR =COLORS_BAR = {50: "#b5f0b5", 200: "#2ea82e", 1000: "#0a5c0a"}
+# {50: "#fcb5b5", 200: "#e32f2f", 1000: "#7a0000"} RED COLOR MAP
 
 
 def load_results():
@@ -75,6 +81,27 @@ def save_panel(data, fname, cmap, vmin, vmax, title=None):
                 bbox_inches="tight", pad_inches=0.02)
     plt.close(fig)
 
+def save_frobenius_histogram(v_samples_dict, v_true, fname, n_values=None):
+    if n_values is None:
+        n_values = N_VALUES   # falls back to global if not specified
+    fig, ax = plt.subplots(1, 1, figsize=(4.5, 3.0))
+    for N in n_values:
+        norms = np.array([
+            np.linalg.norm(v_samples_dict[N][i] - v_true, 'fro')
+            for i in range(v_samples_dict[N].shape[0])
+        ])
+        ax.hist(norms, bins=40, alpha=0.55, color=COLORS_BAR[N],
+                edgecolor="black", linewidth=0.4, label=f"$N = {N}$")
+    ax.set_xlim(0, 13)
+    ax.set_ylim(0, 22)
+    ax.set_title("Posterior sample frobenius norm sips vs true model", fontsize=11)
+    ax.legend(fontsize=9)
+    ax.tick_params(labelsize=9)
+    ax.yaxis.set_major_locator(MaxNLocator(integer=True))
+    fig.tight_layout()
+    fig.savefig(os.path.join(OUT_DIR, fname), dpi=DPI,
+                bbox_inches="tight", pad_inches=0.02)
+    plt.close(fig)
 
 def save_scatter(z_train, z_samples, z_true, ratios, N, fname):
     """Scatter plot of first two KL dims: training, posterior, true."""
@@ -274,14 +301,16 @@ def main():
     # Compute all posterior stats first to get global ranges
     means, stds, errors = {}, {}, {}
     most_mem_samples, nn_samples = {}, {}
+    v_samples_all = {}   
 
     for N in N_VALUES:
         print(f"Reconstructing velocities for N={N}...")
         z_samp = _get(r, f"z_samples_{N}")
         z_train = _get(r, f"z_train_{N}")
         ratios = _get(r, f"ratios_{N}")
-
+        
         v_samples = reconstruct_velocity(kl, z_samp)
+        v_samples_all[N] = v_samples
         means[N] = v_samples.mean(axis=0)
         stds[N] = v_samples.std(axis=0)
         errors[N] = np.abs(means[N] - v_true)
@@ -382,9 +411,10 @@ def main():
     z_cal_max = max(z_binned_max_x, z_binned_max_y) * PAD
     v_xlim = (0, v_cal_max)
     v_ylim = (0, v_cal_max)
-    z_xlim = (0, z_cal_max)
-    z_ylim = (0, z_cal_max)
-
+    # z_xlim = (0, z_cal_max)
+    # z_ylim = (0, z_cal_max)
+    z_xlim = (0, 1.7)
+    z_ylim = (0, 1.4)
     save_calibration_vspace(results_dict, 0.07, kl, v_true,
                             v_xlim, v_ylim,
                             "calibration_vspace.png")
@@ -422,6 +452,8 @@ def main():
                    CMAP_VEL, vmin_vel, vmax_vel)
         print(f"  Pair {j}: sample {si} (r={ratios_50[si]:.3f}) "
               f"-> train {nn}")
+        
+    save_frobenius_histogram(v_samples_all, v_true, "frobenius_histogram.png",n_values=[200])
 
     # Print summary
     print("\n=== Memorization summary ===")

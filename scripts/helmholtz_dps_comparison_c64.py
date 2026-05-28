@@ -47,9 +47,9 @@ MODEL_CONFIGS = {
 }
 # Checkpoint directory basenames for each N (must match training output).
 _CKPT_DIRS = {
-    50:   "helmholtz_fwi_kl_K-10_grid_size-64_v_background-2.0_sigma_m-0.02_npml-10_pml_max-100.0_n_src-5_n_rec-40_frequency-4.0_hidden_dim-2048_nlayers-12_emb_size-256_nt-200_batchsize-50_max_epochs-50000_save_freq-5000_lr-0.0005_lr_final-5e-05_num_train-50_seed-42",
-    200:  "helmholtz_fwi_kl_K-10_grid_size-64_v_background-2.0_sigma_m-0.02_npml-10_pml_max-100.0_n_src-5_n_rec-40_frequency-4.0_hidden_dim-2048_nlayers-12_emb_size-256_nt-200_batchsize-50_max_epochs-12500_save_freq-1250_lr-0.59b245396ff9fa352b4d3c414aeabb6b2840626c",
-    1000: "helmholtz_fwi_kl_K-10_grid_size-64_v_background-2.0_sigma_m-0.02_npml-10_pml_max-100.0_n_src-5_n_rec-40_frequency-4.0_hidden_dim-2048_nlayers-12_emb_size-256_nt-200_batchsize-50_max_epochs-2500_save_freq-250_lr-0.0005_lr_final-5e-05_num_train-1000_seed-42",
+    50:   "helmholtz_fwi_kl_K-10_grid_size-64_v_background-2.0_sigma_m-0.02_npml-10_pml_max-100.0_n_src-5_n_rec-40_frequency-4.0_hidden_dim-2048_num_train-50_max_epochs-50000_save_freq-5000_holdout-0.0_n_clusters-0",
+    200:  "helmholtz_fwi_kl_K-10_grid_size-64_v_background-2.0_sigma_m-0.02_npml-10_pml_max-100.0_n_src-5_n_rec-40_frequency-4.0_hidden_dim-2048_num_train-200_max_epochs-12500_save_freq-1250_holdout-0.0_n_clusters-0",
+    1000: "helmholtz_fwi_kl_K-10_grid_size-64_v_background-2.0_sigma_m-0.02_npml-10_pml_max-100.0_n_src-5_n_rec-40_frequency-4.0_hidden_dim-2048_num_train-1000_max_epochs-2500_save_freq-250_holdout-0.0_n_clusters-0",
 }
 N_VALUES_DEFAULT = [50, 200, 1000]
 
