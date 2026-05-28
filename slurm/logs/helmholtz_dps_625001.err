@@ -1,0 +1,6 @@
+/var/spool/slurmd/job625001/slurm_script: line 11: /home/da389032/miniconda3/bin/conda: No such file or directory
+
+CondaError: Run 'conda init' before 'conda activate'
+
+/var/spool/slurmd/job625001/slurm_script: line 13: cd: /home/da389032/Codes/mempost: No such file or directory
+python: can't open file '/lustre/fs1/home/da389032/mempost1/slurm/scripts/helmholtz_dps_comparison_c64.py': [Errno 2] No such file or directory

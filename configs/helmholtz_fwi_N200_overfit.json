@@ -28,5 +28,7 @@
     "dps_num_samples": 16,
     "seed": 42,
     "gpu_id": 0,
-    "phase": "train"
+    "phase": "train",
+    "holdout": 0.1,
+    "n_clusters": 10
 }

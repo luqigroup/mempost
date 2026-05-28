@@ -1,0 +1,21 @@
+Traceback (most recent call last):
+  File "/lustre/fs1/home/da389032/mempost/scripts/helmholtz_fwi.py", line 30, in <module>
+    from utils.cluster_aligner import ClusterAligner 
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/lustre/fs1/home/da389032/mempost/utils/cluster_aligner.py", line 8, in <module>
+    from sklearn.cluster import KMeans, MiniBatchKMeans
+ModuleNotFoundError: No module named 'sklearn'
+Traceback (most recent call last):
+  File "/lustre/fs1/home/da389032/mempost/scripts/helmholtz_fwi.py", line 30, in <module>
+    from utils.cluster_aligner import ClusterAligner 
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/lustre/fs1/home/da389032/mempost/utils/cluster_aligner.py", line 8, in <module>
+    from sklearn.cluster import KMeans, MiniBatchKMeans
+ModuleNotFoundError: No module named 'sklearn'
+Traceback (most recent call last):
+  File "/lustre/fs1/home/da389032/mempost/scripts/helmholtz_fwi.py", line 30, in <module>
+    from utils.cluster_aligner import ClusterAligner 
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/lustre/fs1/home/da389032/mempost/utils/cluster_aligner.py", line 8, in <module>
+    from sklearn.cluster import KMeans, MiniBatchKMeans
+ModuleNotFoundError: No module named 'sklearn'

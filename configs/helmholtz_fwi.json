@@ -1,5 +1,5 @@
 {
-    "experiment_name": "helmholtz_fwi",
+    "experiment_name": "helmholtz_fwi_sigma_w_2.5",
     "kl_K": 10,
     "grid_size": 64,
     "v_background": 2.0,
@@ -14,13 +14,13 @@
     "n_rec": 40,
     "frequency": 4.0,
     "noise_rel": 0.05,
-    "hidden_dim": 1024,
-    "nlayers": 10,
+    "hidden_dim": 2048,
+    "nlayers": 12,
     "emb_size": 256,
     "nt": 200,
-    "batchsize": 64,
-    "max_epochs": 10000,
-    "save_freq": 500,
+    "batchsize": 50,
+    "max_epochs": 12500,
+    "save_freq": 1250,
     "lr": 0.0005,
     "lr_final": 0.00005,
     "num_train": 200,
@@ -29,5 +29,6 @@
     "seed": 42,
     "gpu_id": 0,
     "phase": "train",
-    "upload": 1
+    "holdout": 0.1,
+    "n_clusters": 5
 }

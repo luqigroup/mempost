@@ -1,0 +1,22 @@
+/var/spool/slurmd/job625043/slurm_script: line 12: /lustre/fs1/home/da389032/miniconda3/bin/conda: No such file or directory
+
+CondaError: Run 'conda init' before 'conda activate'
+
+Traceback (most recent call last):
+  File "/lustre/fs1/home/da389032/mempost/scripts/helmholtz_fwi.py", line 21, in <module>
+    from mempost.utils.helmholtz import HelmholtzSolver, make_src_rec
+  File "/lustre/fs1/home/da389032/mempost/mempost/utils/helmholtz.py", line 18, in <module>
+    import scipy.sparse as sp
+ModuleNotFoundError: No module named 'scipy'
+Traceback (most recent call last):
+  File "/lustre/fs1/home/da389032/mempost/scripts/helmholtz_fwi.py", line 21, in <module>
+    from mempost.utils.helmholtz import HelmholtzSolver, make_src_rec
+  File "/lustre/fs1/home/da389032/mempost/mempost/utils/helmholtz.py", line 18, in <module>
+    import scipy.sparse as sp
+ModuleNotFoundError: No module named 'scipy'
+Traceback (most recent call last):
+  File "/lustre/fs1/home/da389032/mempost/scripts/helmholtz_fwi.py", line 21, in <module>
+    from mempost.utils.helmholtz import HelmholtzSolver, make_src_rec
+  File "/lustre/fs1/home/da389032/mempost/mempost/utils/helmholtz.py", line 18, in <module>
+    import scipy.sparse as sp
+ModuleNotFoundError: No module named 'scipy'

@@ -1,0 +1,19 @@
+/var/spool/slurmd/job625044/slurm_script: line 12: /lustre/fs1/home/da389032/miniconda3/bin/conda: No such file or directory
+
+CondaError: Run 'conda init' before 'conda activate'
+
+Traceback (most recent call last):
+  File "/lustre/fs1/home/da389032/mempost/scripts/helmholtz_fwi.py", line 30, in <module>
+    from utils.cluster_aligner import ClusterAligner 
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ModuleNotFoundError: No module named 'utils'
+Traceback (most recent call last):
+  File "/lustre/fs1/home/da389032/mempost/scripts/helmholtz_fwi.py", line 30, in <module>
+    from utils.cluster_aligner import ClusterAligner 
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ModuleNotFoundError: No module named 'utils'
+Traceback (most recent call last):
+  File "/lustre/fs1/home/da389032/mempost/scripts/helmholtz_fwi.py", line 30, in <module>
+    from utils.cluster_aligner import ClusterAligner 
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ModuleNotFoundError: No module named 'utils'

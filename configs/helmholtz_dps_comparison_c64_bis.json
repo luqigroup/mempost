@@ -1,5 +1,5 @@
 {
-    "experiment_name": "helmholtz_dps_comparison_sips_sigma_w_1.5_c64",
+    "experiment_name": "helmholtz_dps_comparison_c64_sips_2.5",
     "kl_K": 10,
     "grid_size": 200,
     "dx": 0.01,

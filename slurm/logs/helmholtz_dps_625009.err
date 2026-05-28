@@ -1,0 +1,8 @@
+/var/spool/slurmd/job625009/slurm_script: line 11: /home/da389032/miniconda3/bin/conda: No such file or directory
+
+CondaError: Run 'conda init' before 'conda activate'
+
+Traceback (most recent call last):
+  File "/lustre/fs1/home/da389032/mempost1/scripts/helmholtz_dps_comparison_c64.py", line 23, in <module>
+    from mempost.models import NoiseScheduler
+ModuleNotFoundError: No module named 'mempost'
