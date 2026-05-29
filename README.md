@@ -89,6 +89,27 @@ python scripts/helmholtz_fwi.py --config configs/helmholtz_fwi_N200_overfit.json
 python scripts/helmholtz_fwi.py --config configs/helmholtz_fwi_N1000_overfit.json --gpu_id 0
 ```
 
+##### Pre-trained checkpoints (skip Step 1)
+
+If you do not want to retrain, download the final-epoch checkpoints from Dropbox into the exact paths the DPS script reads:
+
+```bash
+D50="helmholtz_fwi_kl_K-10_grid_size-64_v_background-2.0_sigma_m-0.02_npml-10_pml_max-100.0_n_src-5_n_rec-40_frequency-4.0_hidden_dim-2048_nlayers-12_emb_size-256_nt-200_batchsize-50_max_epochs-50000_save_freq-5000_lr-0.0005_lr_final-5e-05_num_train-50_seed-42"
+D200="helmholtz_fwi_kl_K-10_grid_size-64_v_background-2.0_sigma_m-0.02_npml-10_pml_max-100.0_n_src-5_n_rec-40_frequency-4.0_hidden_dim-2048_nlayers-12_emb_size-256_nt-200_batchsize-50_max_epochs-12500_save_freq-1250_lr-0.59b245396ff9fa352b4d3c414aeabb6b2840626c"
+D1000="helmholtz_fwi_kl_K-10_grid_size-64_v_background-2.0_sigma_m-0.02_npml-10_pml_max-100.0_n_src-5_n_rec-40_frequency-4.0_hidden_dim-2048_nlayers-12_emb_size-256_nt-200_batchsize-50_max_epochs-2500_save_freq-250_lr-0.0005_lr_final-5e-05_num_train-1000_seed-42"
+
+mkdir -p "data/checkpoints/$D50" "data/checkpoints/$D200" "data/checkpoints/$D1000"
+
+wget 'https://www.dropbox.com/scl/fi/eed8ne65vz750iubm6g2d/checkpoint_49999.pth?rlkey=l6qbir3k1nkshdy6jljfjfsak&dl=1' \
+    -O "data/checkpoints/$D50/checkpoint_49999.pth"
+wget 'https://www.dropbox.com/scl/fi/kgkzbw7hb84j9rxoevull/checkpoint_12499.pth?rlkey=9zaax2pth9k17hicwem88y8d0&dl=1' \
+    -O "data/checkpoints/$D200/checkpoint_12499.pth"
+wget 'https://www.dropbox.com/scl/fi/6vivb70490zvclxtyp1qd/checkpoint_2499.pth?rlkey=6t1r8rbf9kon1q4xvxn9j5qsn&dl=1' \
+    -O "data/checkpoints/$D1000/checkpoint_2499.pth"
+```
+
+Each file is ~784 MB. Run from the repo root.
+
 #### Step 2: Run DPS posterior sampling
 
 Config: `configs/helmholtz_dps_comparison_c64.json`.
