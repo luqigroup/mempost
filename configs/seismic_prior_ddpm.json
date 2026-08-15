@@ -1,0 +1,21 @@
+{
+    "experiment_name": "seismic_prior_parihaka_oracle",
+    "data_h5": "data/seismic/dataset_train.h5",
+    "data_key": "broadband_dm",
+    "n_train": 3800,
+    "n_val": 200,
+    "base": 64,
+    "lr": 0.0002,
+    "weight_decay": 0.0,
+    "beta_schedule": "squaredcos_cap_v2",
+    "num_train_timesteps": 1000,
+    "batch_size": 8,
+    "n_steps": 3000,
+    "save_freq": 2000,
+    "n_sample_steps": 250,
+    "n_sample": 8,
+    "seed": 0,
+    "gpu_id": 0,
+    "phase": "train",
+    "upload": 0
+}
